@@ -1,6 +1,6 @@
 package controle;
 
-import Modelo.Gene;
+import modelo.Gene;
 
 public class GeneHerança extends Gene {
 	

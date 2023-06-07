@@ -47,6 +47,8 @@ public class Gene {
 				aa = "L";
 			} else if (codon.equals("UAA") || codon.equals("UAG") || codon.equals("UGA")) {
 				aa = "*";
+			} else if (codon.equals("UAA") || codon.equals("UAG") || codon.equals("UGA")) {
+				aa = "*";
 			} 
 			proteina=proteina+aa;
 			
