@@ -44,7 +44,7 @@ public class GeneDAO implements IGeneDAO {
 
 	@Override
 	public boolean excluir(Gene gene) {
-
+		genes.remove(gene);
 		return false;
 	}
 

@@ -118,6 +118,29 @@ public class Principal {
 				}
 			}
 			case 3: {
+				System.out.println("O nome do gene que deseja excluir:");
+				String nome = leitura.nextLine();
+				for (Gene gene : genes) {
+					if (gene.getNome().equals(nome)) {
+						System.out.println("Confirme as informações a serem excluidas");
+						System.out.println("Nome: " + gene.getNome());
+						System.out.println("Sequência: " + gene.getSequencia());
+						System.out.println("Tradução: " + gene.getTraducao());
+						System.out.println("\nVocê confirma a exclusão desses dados?\n1 - sim | 2 - não");
+						Integer confirmacao = Integer.valueOf(leitura.nextLine());
+						switch (confirmacao) {
+						case 1: {
+							genes.remove(gene);
+							break;
+						}
+						case 2: {
+							break;
+						}
+						}
+					}
+				}
+				
+		
 			}
 			case 4: {
 				if (opcao == 4) {
