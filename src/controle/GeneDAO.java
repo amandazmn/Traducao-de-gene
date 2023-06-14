@@ -33,13 +33,13 @@ public class GeneDAO implements IGeneDAO {
 
 	@Override
 	public ArrayList<Gene> listarGenes() {
-		return genes;
+		return genes; 
 	}
 
 	@Override
 	public boolean alterar(Gene gene, String novaSequencia) {
 		gene.setSequencia(novaSequencia);
-		return false;
+		return false; // mudar o return de todos
 	}
 
 	@Override
@@ -48,10 +48,5 @@ public class GeneDAO implements IGeneDAO {
 		return false;
 	}
 
-	@Override
-	public boolean exibirTabela() {
-
-		return false;
-	}
 
 }

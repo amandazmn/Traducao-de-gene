@@ -12,6 +12,6 @@ public interface IGeneDAO {
 	
 	public boolean excluir(Gene gene);
 	
-	public boolean exibirTabela();
+	
 	
 }

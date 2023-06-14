@@ -66,7 +66,7 @@ public class Principal {
 
 			}
 			case 1: {
-				System.out.println("Listagem de genes cadastrados: "); //perguntar para prof. Nós não chamamos o método listar
+				System.out.println("Listagem de genes cadastrados: ");
 				for (Gene gen : genes) {
 					System.out.println("Nome: " + gen.getNome());
 					System.out.println("Sequência: " + gen.getSequencia());
@@ -87,23 +87,23 @@ public class Principal {
 							j++;
 						}
 						j = 0;
-						String[] codons = new String[Integer.MAX_VALUE];
+						ArrayList<String> codons = new ArrayList<>();
 						for (int i = 0; i < sequencia.length(); i += 3) {
-							codons[j] = gene.getSequencia().substring(i, i + 3);
-							j++;
+							String codon = gene.getSequencia().substring(i, i + 3);
+							codons.add(codon);
 						}
-						System.out.println("Número de códons que deseja editar: ");
+						System.out.println("Quantidade de códons que deseja editar: ");
 						Integer n = Integer.valueOf(leitura.nextLine());
 						for (int i = 0; i < n; i++) {
 							System.out.println("Número do códon que deseja editar: ");
 							Integer nCodon = Integer.valueOf(leitura.nextLine());
-							System.out.println("Códon: " + codons[nCodon]);
+							System.out.println("Códon: " + codons.get(nCodon));
 							System.out.println("Novo códon: ");
-							codons[nCodon] = leitura.nextLine();
+							codons.set(nCodon, leitura.nextLine());
 						}
-						String novaSequencia = null;
-						for (int i = 0; i < codons.length; i++) {
-							novaSequencia = novaSequencia + codons[i];
+						String novaSequencia = "";
+						for (int i = 0; i < codons.size(); i++) {
+							novaSequencia = novaSequencia + codons.get(i);
 						}
 
 						boolean alterou = dao.alterar(gene, novaSequencia);
@@ -119,65 +119,12 @@ public class Principal {
 			}
 			case 3: {
 			}
-				case 4:{
-					if(opcao == 4) {
-						System.out.println("====================================================");
-						System.out.println("----------------------------------------------------");
-						System.out.println("                TABELA DE AMINOÁCIDOS               ");
-						System.out.println("----------------------------------------------------");
-						System.out.println("====================================================");
-						System.out.println("AUG            Met(Metionina)        CÓDON DE INÍCIO");
-						System.out.println("UAA UAG  UGA                         CÓDON DE PARADA");
-						System.out.println("====================================================");
-						System.out.println("UUU  UUC       Phe(Fenilalamina)                    ");
-						System.out.println("====================================================");
-						System.out.println("UUA  UUG  CUU\n"
-								         + "CUC  CUA  CUG  Leu(Leucina)                         ");
-						System.out.println("====================================================");
-						System.out.println("AUU  AUC  AUA  Ile(Isoleucina)                      ");
-						System.out.println("====================================================");
-						System.out.println("GUU  GUC\n"
-								         + "GUA  GUG       Val(Valina)                          ");
-						System.out.println("====================================================");
-						System.out.println("UCU  UCC  UCA\n"
-								         + "UCG  AGU  AGC  Ser(Serina)                          ");
-						System.out.println("====================================================");
-						System.out.println("CCU  CCC\n"
-								         + "CCA  CCG       Pro(Prolina)                         ");
-						System.out.println("====================================================");
-						System.out.println("ACU  ACC\n"
-								         + "ACA  ACG       Thr(Treonina)                        ");
-						System.out.println("====================================================");
-						System.out.println("GCU  GCC\n"
-								         + "GCA  GCG       Ala(Alanina)                         ");
-						System.out.println("====================================================");
-						System.out.println("UAU  UAC       Tyr(Tirosina)                        ");
-						System.out.println("====================================================");
-						System.out.println("CAU  CAC       His(Histidina)                       ");
-						System.out.println("====================================================");
-						System.out.println("CAA  CAG       Gln(Glutamina)                       ");
-						System.out.println("====================================================");
-						System.out.println("AAU  AAC       Asn(Aspargina)                       ");
-						System.out.println("====================================================");
-						System.out.println("AAA  AAG       Lys(Lisina)                          ");
-						System.out.println("====================================================");
-						System.out.println("GAU  GAC       Asp(Ácido aspártico)                 ");
-						System.out.println("====================================================");
-						System.out.println("GAA  GAG       Glu(Ácido glutâmino)                 ");
-						System.out.println("====================================================");
-						System.out.println("UGU  UGC       Cys(Cisteína)                        ");
-						System.out.println("====================================================");
-						System.out.println("UGG            Trp(Tripcofano)                      ");
-						System.out.println("====================================================");
-						System.out.println("CGU  CGC  CGA\n"
-								         + "CGG  AGA  AGG   Arg(Arginina)                       ");
-						System.out.println("====================================================");
-						System.out.println("GGU  GGC\n"
-								         + "GGA  GGG        Gly(Glicina)                        ");
-						System.out.println("====================================================");
-						}
-					// nao esta sendo utilizado o metodo (exibir tabela)
-					}
+			case 4: {
+				if (opcao == 4) {
+					exibirTabela();
+				}
+				// nao esta sendo utilizado o metodo (exibir tabela)
+			}
 			case 5: {
 				// Encerra o sistema
 				leitura.close();
@@ -186,5 +133,54 @@ public class Principal {
 			}
 		}
 	}
-}
 
+	private static void exibirTabela() {
+		System.out.println("====================================================");
+		System.out.println("----------------------------------------------------");
+		System.out.println("                TABELA DE AMINOÁCIDOS               ");
+		System.out.println("----------------------------------------------------");
+		System.out.println("====================================================");
+		System.out.println("AUG            Met(Metionina)        CÓDON DE INÍCIO");
+		System.out.println("UAA UAG  UGA                         CÓDON DE PARADA");
+		System.out.println("====================================================");
+		System.out.println("UUU  UUC       Phe(Fenilalamina)                    ");
+		System.out.println("====================================================");
+		System.out.println("UUA  UUG  CUU\n" + "CUC  CUA  CUG  Leu(Leucina)     ");
+		System.out.println("====================================================");
+		System.out.println("AUU  AUC  AUA  Ile(Isoleucina)                      ");
+		System.out.println("====================================================");
+		System.out.println("GUU  GUC\n" + "GUA  GUG       Val(Valina)           ");
+		System.out.println("====================================================");
+		System.out.println("UCU  UCC  UCA\n" + "UCG  AGU  AGC  Ser(Serina)      ");
+		System.out.println("====================================================");
+		System.out.println("CCU  CCC\n" + "CCA  CCG       Pro(Prolina)          ");
+		System.out.println("====================================================");
+		System.out.println("ACU  ACC\n" + "ACA  ACG       Thr(Treonina)         ");
+		System.out.println("====================================================");
+		System.out.println("GCU  GCC\n" + "GCA  GCG       Ala(Alanina)          ");
+		System.out.println("====================================================");
+		System.out.println("UAU  UAC       Tyr(Tirosina)                        ");
+		System.out.println("====================================================");
+		System.out.println("CAU  CAC       His(Histidina)                       ");
+		System.out.println("====================================================");
+		System.out.println("CAA  CAG       Gln(Glutamina)                       ");
+		System.out.println("====================================================");
+		System.out.println("AAU  AAC       Asn(Aspargina)                       ");
+		System.out.println("====================================================");
+		System.out.println("AAA  AAG       Lys(Lisina)                          ");
+		System.out.println("====================================================");
+		System.out.println("GAU  GAC       Asp(Ácido aspártico)                 ");
+		System.out.println("====================================================");
+		System.out.println("GAA  GAG       Glu(Ácido glutâmino)                 ");
+		System.out.println("====================================================");
+		System.out.println("UGU  UGC       Cys(Cisteína)                        ");
+		System.out.println("====================================================");
+		System.out.println("UGG            Trp(Tripcofano)                      ");
+		System.out.println("====================================================");
+		System.out.println("CGU  CGC  CGA\n" + "CGG  AGA  AGG   Arg(Arginina)   ");
+		System.out.println("====================================================");
+		System.out.println("GGU  GGC\n" + "GGA  GGG        Gly(Glicina)         ");
+		System.out.println("====================================================");
+
+	}
+}
