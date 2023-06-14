@@ -17,16 +17,17 @@ public class Principal {
 		System.out.println("4 - Exibir tabela");
 		System.out.println("5 - Fechar");
 		Integer opcao = Integer.valueOf(leitura.nextLine());
-		leitura.close();
+
 		return opcao;
 	}
 
 	public static void main(String[] args) {
-		Scanner leitura = new Scanner(System.in);
-		Integer opcao = Integer.MAX_VALUE;
-		GeneDAO dao = new GeneDAO();
-		ArrayList<Gene> genes = dao.listarGenes();
 
+		Scanner leitura = new Scanner(System.in);
+
+		Integer opcao = Integer.MAX_VALUE;
+		GeneDAO dao = GeneDAO.getInstancia();
+		ArrayList<Gene> genes = dao.listarGenes();
 
 		while (opcao != 0) {
 			opcao = menu();
@@ -34,27 +35,25 @@ public class Principal {
 			switch (opcao) {
 			case 0: {
 
-				Gene gene = new Gene();
+				System.out.println("Tipo 1 - DNA para RNAm | 2 - DNA para RNAm para AA): ");
+				String read = leitura.nextLine();
+				Integer tipo = Integer.valueOf(read);
 
-				System.out.println("Tipo 1 - DNA para RNAm | 2 - RNAm para AA): ");
-				Integer tipo = Integer.valueOf(leitura.nextLine());
-				
 				System.out.println("Digita nome: ");
 				String nome = leitura.nextLine();
+
+				Gene gene = new Gene();
 				gene.setNome(nome);
 				System.out.println("Sequência: ");
 				String sequencia = leitura.nextLine();
 				gene.setSequencia(sequencia);
 				switch (tipo) {
 				case 1: {
-					String mRNA;
-					mRNA = gene.getmRNA();
+					String mRNA = gene.getmRNA(gene.getSequencia());
 					gene.setTraducao(mRNA);
 				}
 				case 2: {
-					String AA;
-					AA = gene.getmRNA();
-					AA = gene.getProteina();
+					String AA = gene.getProteina(gene.getSequencia());
 					gene.setTraducao(AA);
 				}
 				}
@@ -67,7 +66,7 @@ public class Principal {
 
 			}
 			case 1: {
-				System.out.println("Listagem de genes cadastrados: ");
+				System.out.println("Listagem de genes cadastrados: "); //perguntar para prof. Nós não chamamos o método listar
 				for (Gene gen : genes) {
 					System.out.println("Nome: " + gen.getNome());
 					System.out.println("Sequência: " + gen.getSequencia());
@@ -106,27 +105,27 @@ public class Principal {
 						for (int i = 0; i < codons.length; i++) {
 							novaSequencia = novaSequencia + codons[i];
 						}
-						
+
 						boolean alterou = dao.alterar(gene, novaSequencia);
-						
+
 						System.out.println("Nova sequência: " + gene.getSequencia());
-						if (alterou==true) {
+						if (alterou == true) {
 							System.out.println("Alterou a sequência com sucesso.");
 						} else {
 							System.out.println("Erro ao alterar a sequência.");
 						}
-			}
-			}
+					}
+				}
 			}
 			case 3: {
 
 			}
 			case 5: {
 				// Encerra o sistema
+				leitura.close();
 				break;
 			}
 			}
 		}
 	}
 }
-

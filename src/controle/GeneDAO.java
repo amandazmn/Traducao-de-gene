@@ -1,7 +1,6 @@
 package controle;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import modelo.Gene;
 import modelo.IGeneDAO;
@@ -10,6 +9,9 @@ public class GeneDAO implements IGeneDAO {
 
 	private static ArrayList<Gene> genes;
 	private static GeneDAO instancia;
+
+	private GeneDAO() {
+	}
 
 	public static GeneDAO getInstancia() {
 		if (instancia == null) {
@@ -20,17 +22,12 @@ public class GeneDAO implements IGeneDAO {
 		return instancia;
 	}
 
-	/*
-	 * Remover todos os arraylist dentro de metodo (so pode usar o arraylist GENES
-	 * 
-	 * Remover todos os scanner dentro de metodos
-	 */
-
-	
-
 	@Override
 	public boolean inserir(Gene gene) {
-		genes.add(gene);
+		if (gene != null) {
+			genes.add(gene);
+			return true;
+		}
 		return false;
 	}
 
@@ -47,13 +44,13 @@ public class GeneDAO implements IGeneDAO {
 
 	@Override
 	public boolean excluir(Gene gene) {
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean exibirTabela() {
-		
+
 		return false;
 	}
 

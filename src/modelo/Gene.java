@@ -29,13 +29,13 @@ public class Gene {
 		this.traducao = traducao;
 	}
 
-	public String getmRNA() {
+	public String getmRNA(String sequencia) {
 		return sequencia.replace('T', 'U');
 	}
 
-	public String getProteina() {
+	public String getProteina(String sequencia) {
 
-		String mRNA = getmRNA();
+		String mRNA = getmRNA(sequencia);
 		String proteina = "";
 		for (int i = 0; i < mRNA.length(); i += 3) {
 			String codon = mRNA.substring(i, i + 3);
