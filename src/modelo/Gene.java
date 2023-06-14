@@ -30,11 +30,11 @@ public class Gene {
 	}
 
 	public String getmRNA(String sequencia) {
+		sequencia = sequencia.toUpperCase();	
 		return sequencia.replace('T', 'U');
 	}
 
 	public String getProteina(String sequencia) {
-
 		String mRNA = getmRNA(sequencia);
 		String proteina = "";
 		for (int i = 0; i < mRNA.length(); i += 3) {
