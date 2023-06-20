@@ -63,7 +63,9 @@ public class Principal {
 				} else {
 					System.out.println("Erro ao cadastrar o gene.");
 				}
-
+				
+				opcao = menu();
+break;
 			}
 			case 1: {
 				System.out.println("Listagem de genes cadastrados: ");
@@ -72,6 +74,7 @@ public class Principal {
 					System.out.println("Sequência: " + gen.getSequencia());
 					System.out.println("Tradução: " + gen.getTraducao());
 				}
+				break;
 			}
 			case 2: {
 				System.out.println("Nome do gene que deseja editar: ");
@@ -116,6 +119,7 @@ public class Principal {
 						}
 					}
 				}
+				break;
 			}
 			case 3: {
 				System.out.println("O nome do gene que deseja excluir:");
@@ -130,7 +134,13 @@ public class Principal {
 						Integer confirmacao = Integer.valueOf(leitura.nextLine());
 						switch (confirmacao) {
 						case 1: {
-							genes.remove(gene);
+							boolean excluiu = genes.remove(gene);
+							if (excluiu == true) {
+								System.out.println("Excluiu gene com sucesso. ");
+							}
+							else {
+								System.out.println("Erro ao excluir gene. ");
+							}
 							break;
 						}
 						case 2: {
@@ -140,13 +150,13 @@ public class Principal {
 					}
 				}
 				
-		
+				break;
 			}
 			case 4: {
-				if (opcao == 4) {
+	//			if (opcao == 4) {
 					exibirTabela();
-				}
-				// nao esta sendo utilizado o metodo (exibir tabela)
+	//			}
+				break;
 			}
 			case 5: {
 				// Encerra o sistema
