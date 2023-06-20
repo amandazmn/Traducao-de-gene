@@ -28,7 +28,9 @@ public class GeneDAO implements IGeneDAO {
 			genes.add(gene);
 			return true;
 		}
-		return false;
+		else {
+			return false;
+		}
 	}
 
 	@Override
@@ -38,14 +40,24 @@ public class GeneDAO implements IGeneDAO {
 
 	@Override
 	public boolean alterar(Gene gene, String novaSequencia) {
-		gene.setSequencia(novaSequencia);
-		return false; // mudar o return de todos
+		if (gene!=null && novaSequencia!=null) {
+			gene.setSequencia(novaSequencia);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean excluir(Gene gene) {
-		genes.remove(gene);
-		return false;
+		if (gene!=null) {
+			genes.remove(gene);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 
