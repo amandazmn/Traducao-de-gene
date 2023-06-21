@@ -30,6 +30,7 @@ public class Principal {
 		ArrayList<Gene> genes = dao.listarGenes();
 
 		while (opcao != 5) {
+			
 			opcao = menu();
 
 			switch (opcao) {
@@ -64,7 +65,6 @@ public class Principal {
 					System.out.println("Erro ao cadastrar o gene.");
 				}
 				
-				opcao = menu();
 				break;
 			}
 			
