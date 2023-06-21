@@ -17,7 +17,6 @@ public class Principal {
 		System.out.println("4 - Exibir tabela");
 		System.out.println("5 - Fechar");
 		Integer opcao = Integer.valueOf(leitura.nextLine());
-
 		return opcao;
 	}
 
