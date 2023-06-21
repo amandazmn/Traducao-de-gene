@@ -71,7 +71,7 @@ public class Principal {
 			case 1: {
 				System.out.println("Listagem de genes cadastrados: ");
 				for (Gene gen : genes) {
-					System.out.println("Nome: " + gen.getNome());
+					System.out.println("\nNome: " + gen.getNome());
 					System.out.println("Sequência: " + gen.getSequencia());
 					System.out.println("Tradução: " + gen.getTraducao());
 				}
