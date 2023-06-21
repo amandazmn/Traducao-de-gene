@@ -12,6 +12,10 @@ public interface IGeneDAO {
 	
 	public boolean excluir(Gene gene);
 	
+	public String getmRNA(String sequencia);
+	
+	public String getProteina(String sequencia);
+	
 	
 	
 }

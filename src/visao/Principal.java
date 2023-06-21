@@ -29,7 +29,7 @@ public class Principal {
 		GeneDAO dao = GeneDAO.getInstancia();
 		ArrayList<Gene> genes = dao.listarGenes();
 
-		while (opcao != 0) {
+		while (opcao != 5) {
 			opcao = menu();
 
 			switch (opcao) {
@@ -49,11 +49,11 @@ public class Principal {
 				gene.setSequencia(sequencia);
 				switch (tipo) {
 				case 1: {
-					String mRNA = gene.getmRNA(gene.getSequencia());
+					String mRNA = dao.getmRNA(gene.getSequencia());
 					gene.setTraducao(mRNA);
 				}
 				case 2: {
-					String AA = gene.getProteina(gene.getSequencia());
+					String AA = dao.getProteina(gene.getSequencia());
 					gene.setTraducao(AA);
 				}
 				}
@@ -65,8 +65,10 @@ public class Principal {
 				}
 				
 				opcao = menu();
-break;
+				break;
 			}
+			
+			
 			case 1: {
 				System.out.println("Listagem de genes cadastrados: ");
 				for (Gene gen : genes) {
@@ -76,6 +78,8 @@ break;
 				}
 				break;
 			}
+			
+			
 			case 2: {
 				System.out.println("Nome do gene que deseja editar: ");
 				String nome = leitura.nextLine();
@@ -121,11 +125,16 @@ break;
 				}
 				break;
 			}
+			
+			
 			case 3: {
 				System.out.println("O nome do gene que deseja excluir:");
 				String nome = leitura.nextLine();
+				boolean end = false;
 				for (Gene gene : genes) {
+					while(end==false) {
 					if (gene.getNome().equals(nome)) {
+						end = true;
 						System.out.println("Confirme as informações a serem excluidas");
 						System.out.println("Nome: " + gene.getNome());
 						System.out.println("Sequência: " + gene.getSequencia());
@@ -147,19 +156,22 @@ break;
 							break;
 						}
 						}
-					}
+					}	
+				}
+					break;
 				}
 				
 				break;
 			}
+			
+			
 			case 4: {
-	//			if (opcao == 4) {
-					exibirTabela();
-	//			}
+				exibirTabela();
 				break;
 			}
+			
+			
 			case 5: {
-				// Encerra o sistema
 				leitura.close();
 				break;
 			}
