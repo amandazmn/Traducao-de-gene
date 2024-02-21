@@ -1,2 +1,2 @@
-# estudo-de-caso
-Estudo de caso Programação III Sistema e tradução de gene
+# Sistema de traducao de gene
+Estudo de caso Programação III Sistema de tradução de gene
